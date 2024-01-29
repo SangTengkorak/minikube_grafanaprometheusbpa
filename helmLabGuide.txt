@@ -1,0 +1,44 @@
+Helm beginner with practice tutorial
+https://devopscube.com/create-helm-chart/ (DevopsCube)
+https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/services/tutorials/GUID-create-first-helm-chart-index.html (vmware)
+
+Install Prometheus with helm
+https://docs.victoriametrics.com/guides/k8s-monitoring-via-vm-cluster/
+https://maxat-akbanov.com/prometheus-and-grafana-setup-in-minikube
+
+Helm HowTo
+https://helm.sh/docs/howto/charts_tips_and_tricks/
+
+Golang text/template guide
+https://blog.gopheracademy.com/advent-2017/using-go-templates/
+
+Helm tutorial
+https://opensource.com/article/20/5/helm-charts
+
+VPA in helm chart repositories
+https://artifacthub.io/packages/helm/cowboysysop/vertical-pod-autoscaler
+
+Add metrics-server in k8s helm chart
+https://artifacthub.io/packages/helm/metrics-server/metrics-server
+
+
+Implement VPA Scenario :
+	Scenario 1:
+		- Enable and set VPA mode as "Initial"
+		- Get Recommended value
+		- Evaluate 
+
+	Scenario 2:
+		- Enable and set VPA mode as "Auto"
+		- Get Recommended value
+		- Increase replicas, so newly created pod will adjust VPA value
+		- Existing pod will be available for resource adjustment
+		- Evaluate 
+
+	Scenario 3:
+		- Enable and set VPA mode as "Auto"
+		- Get Recommended value
+		- Increase replicas, so newly created pod will adjust VPA value
+		- Existing pod will be available for resource adjustment
+		- Set replicas to previous amount, remaining pod will retain its adjusted resource value
+		- Evaluate 
