@@ -2,6 +2,9 @@ Helm beginner with practice tutorial
 https://devopscube.com/create-helm-chart/ (DevopsCube)
 https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/services/tutorials/GUID-create-first-helm-chart-index.html (vmware)
 
+(OPTIONAL) Add vm_scoket to MacOS with M1 processor
+https://minikube.sigs.k8s.io/docs/drivers/qemu/#networking
+
 Install Prometheus with helm
 https://docs.victoriametrics.com/guides/k8s-monitoring-via-vm-cluster/
 https://maxat-akbanov.com/prometheus-and-grafana-setup-in-minikube
@@ -21,19 +24,28 @@ https://artifacthub.io/packages/helm/cowboysysop/vertical-pod-autoscaler
 Add metrics-server in k8s helm chart
 https://artifacthub.io/packages/helm/metrics-server/metrics-server
 
+Test environment:
+	- Grafana with Prometheus, with persistent volume
+	- Created new user for grafana, and get simple metric from prometheus to create dashboard
 
 Implement VPA Scenario :
 	Scenario 1:
 		- Enable and set VPA mode as "Initial"
 		- Get Recommended value
-		- Evaluate 
+		- Evaluate
+		- Tweak deployment file to trigger pod recreate
+		- Newly created pod adjusted its resource based on VPA recomendation
+	Result :
+		- Grafana still retain its user and dashboard
 
 	Scenario 2:
 		- Enable and set VPA mode as "Auto"
 		- Get Recommended value
-		- Increase replicas, so newly created pod will adjust VPA value
-		- Existing pod will be available for resource adjustment
+		- Tweak deployment file to trigger pod recreate
+		- Newly created pod adjusted its resource based on VPA recomendation
 		- Evaluate 
+	Result :
+		- Grafana still retain its user and dashboard
 
 	Scenario 3:
 		- Enable and set VPA mode as "Auto"
@@ -41,4 +53,9 @@ Implement VPA Scenario :
 		- Increase replicas, so newly created pod will adjust VPA value
 		- Existing pod will be available for resource adjustment
 		- Set replicas to previous amount, remaining pod will retain its adjusted resource value
-		- Evaluate 
+		- Evaluate
+
+	Notes:
+		- In this lab, pods resource are rarely differ significanly with recommended value, so it is triggered with manual tweak
+		- Recreate mode is not used, based on VPA repo recomendation
+		- Initial is not effectiva since it is only change pod resource when its recreated
